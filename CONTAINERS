@@ -1,12 +1,12 @@
 # Orion Belt images on GitHub Container Registry (multi-arch amd64/arm64).
 # Documented here for the packages mirror; images are published on release.
 #
-#   docker pull ghcr.io/orion-belt-dev/orion-belt-server:1.1.0
-#   docker pull ghcr.io/orion-belt-dev/orion-belt-agent:1.1.0
+#   docker pull ghcr.io/orion-belt-dev/orion-belt-server:1.2.0
+#   docker pull ghcr.io/orion-belt-dev/orion-belt-agent:1.2.0
 #
-ghcr.io/orion-belt-dev/orion-belt-server:1.1.0
-ghcr.io/orion-belt-dev/orion-belt-server:v1.1.0
+ghcr.io/orion-belt-dev/orion-belt-server:1.2.0
+ghcr.io/orion-belt-dev/orion-belt-server:v1.2.0
 ghcr.io/orion-belt-dev/orion-belt-server:latest
-ghcr.io/orion-belt-dev/orion-belt-agent:1.1.0
-ghcr.io/orion-belt-dev/orion-belt-agent:v1.1.0
+ghcr.io/orion-belt-dev/orion-belt-agent:1.2.0
+ghcr.io/orion-belt-dev/orion-belt-agent:v1.2.0
 ghcr.io/orion-belt-dev/orion-belt-agent:latest
