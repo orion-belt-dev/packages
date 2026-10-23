@@ -1,0 +1,25 @@
+{
+  "version": "1.3.1",
+  "description": "Orion Belt clients: osh, ocp, oadmin",
+  "homepage": "https://orion-belt.dev",
+  "license": "Apache-2.0 WITH Commons-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_amd64.zip",
+      "hash": "f2e7ad079a7160fac85d8c4499da6911df30aeca88eee60b2694657dd185dd7e"
+    },
+    "arm64": {
+      "url": "https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_arm64.zip",
+      "hash": "15946dd1a192c77f959bb771aeef812ce216903da52c9878ccb7688ad64e88ff"
+    },
+    "32bit": {
+      "url": "https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_386.zip",
+      "hash": "a2fbc1798747c630ff0d3563c9fa352ab0cd7da039f9d3b9a6f93c0febf02d48"
+    }
+  },
+  "bin": [
+    "osh.exe",
+    "ocp.exe",
+    "oadmin.exe"
+  ]
+}

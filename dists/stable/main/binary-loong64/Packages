@@ -1,0 +1,48 @@
+Package: orion-belt
+Version: 1.3.1
+Architecture: loong64
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 35547
+Recommends: openssh-client
+Filename: ./orion-belt_1.3.1_loong64.deb
+Size: 10799610
+MD5sum: cb60b0b71ca2ecf4901970f43db3ddcd
+SHA1: 30282e7cccc77a5beea87b5ffdbb7dc156a27c55
+SHA256: 7f2d5dba58506c51b975b2e8d12b625619501a99cab3bc06d258c37b35011e62
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt PAM gateway server (SSH bastion + API).
+ Session recording, just-in-time access and audit for SSH.
+
+Package: orion-belt-agent
+Version: 1.3.1
+Architecture: loong64
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 16727
+Filename: ./orion-belt-agent_1.3.1_loong64.deb
+Size: 5502918
+MD5sum: ba22a9a576aded1c9d50842dde5c160c
+SHA1: f4ead86dad7aeb45eeade6f33b2a6e4c3b9757a1
+SHA256: 58bad0ab10c146d76e1392148710a6d51cef5da0ae5b863a03e120581e915357
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt reverse-SSH agent.
+ Connects this host to an Orion Belt gateway without opening inbound ports.
+
+Package: orion-belt-tools
+Version: 1.3.1
+Architecture: loong64
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 25996
+Filename: ./orion-belt-tools_1.3.1_loong64.deb
+Size: 8814874
+MD5sum: 3cd075ba6b93ae4eb58f64bc72dce1b7
+SHA1: 559a15baa72a0aef61a9e0ab03fe127b9c797e78
+SHA256: 60b368dd7c0451f7b7b90969be18743a1888643bfc4c84ba290a4cb56ab75c75
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt clients: osh (SSH), ocp (file copy) and oadmin (administration).
+

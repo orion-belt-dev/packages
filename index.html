@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orion Belt packages</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F1C" media="(prefers-color-scheme: dark)">
+<script>
+// Apply a saved theme before first paint; without one the page follows the system.
+try { var t = localStorage.getItem("ob-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+/* Orion Belt brand tokens (same values as orion-belt.dev). */
+:root {
+  color-scheme: light;
+  --bg:#F4F6FA; --surface:#FFFFFF; --fg:#0A0F1C; --muted:#4A5368; --line:#D5DBE6;
+  --link:#1F5FE0; --accent:#1F5FE0; --code:#E9EDF4; --focus:#1F5FE0;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg:#0A0F1C; --surface:#111A2E; --fg:#F2F4F8; --muted:#8A94A8; --line:#24304D;
+    --link:#7DA6FF; --accent:#3D7BFF; --code:#111A2E; --focus:#7DA6FF;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:#0A0F1C; --surface:#111A2E; --fg:#F2F4F8; --muted:#8A94A8; --line:#24304D;
+  --link:#7DA6FF; --accent:#3D7BFF; --code:#111A2E; --focus:#7DA6FF;
+}
+body { background:var(--bg); color:var(--fg); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; max-width:56rem; margin:2rem auto; padding:0 1rem; }
+a { color:var(--link); }
+a:focus-visible, button:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+header { display:flex; align-items:center; gap:.75rem; }
+header h1 { margin:0; flex:1; font-size:1.75rem; letter-spacing:-.02em; }
+header svg { width:2.25rem; height:2.25rem; flex:none; }
+.mark-ring { stroke:var(--fg); } .mark-star { fill:var(--fg); } .mark-core { fill:var(--accent); }
+#theme { font:inherit; font-size:.875rem; color:var(--fg); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:.35rem .9rem; min-height:2rem; cursor:pointer; }
+h2 { margin-top:2rem; border-bottom:1px solid var(--line); padding-bottom:.25rem; letter-spacing:-.01em; }
+pre, code { background:var(--code); border-radius:6px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.92em; }
+code { padding:.1em .35em; }
+pre { padding:.75rem 1rem; overflow-x:auto; border:1px solid var(--line); } pre code { padding:0; }
+p.muted { color:var(--muted); }
+table { border-collapse:collapse; width:100%; } td { padding:.3rem .5rem; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+<header>
+<svg viewBox="0 0 96 96" aria-hidden="true"><path class="mark-ring" d="M77.99 47.16A30 30 0 0 1 29.37 71.51M18.01 48.84A30 30 0 0 1 66.63 24.49" fill="none" stroke-width="10" stroke-linecap="round"/><circle class="mark-star" cx="20" cy="62" r="7.5"/><circle class="mark-star" cx="76" cy="34" r="7.5"/><circle class="mark-core" cx="48" cy="48" r="11"/></svg>
+<h1>Orion Belt packages</h1>
+<button id="theme" type="button">Dark theme</button>
+</header>
+<p>Signed package repositories for Orion Belt <strong>v1.3.1</strong>: the server and agent for Linux, and the
+<code>osh</code>, <code>ocp</code> and <code>oadmin</code> clients for Linux, macOS, Windows, the BSDs, illumos and Solaris.</p>
+<p class="muted">Signing key: <a href="orion-belt.asc">orion-belt.asc</a> — fingerprint <code>F1E47F7B036D5202262E174F613B2217A8958DA9</code>.
+Release files: <a href="https://github.com/orion-belt-dev/orion-belt/releases/tag/v1.3.1">GitHub release v1.3.1</a>.</p>
+
+<h2>Quick install</h2>
+<pre>curl -fsSL https://pkgs.orion-belt.dev/install.sh | sh                 # clients (Linux, macOS, BSD, illumos)
+curl -fsSL https://pkgs.orion-belt.dev/install.sh | sh -s -- agent      # agent (Linux)
+curl -fsSL https://pkgs.orion-belt.dev/install.sh | sh -s -- server     # server (Linux)</pre>
+<pre>irm https://pkgs.orion-belt.dev/install.ps1 | iex                       # clients (Windows)
+scoop install https://pkgs.orion-belt.dev/scoop/orion-belt.json         # clients (Windows, scoop)</pre>
+<p class="muted">On Linux the installer adds the repository below for your package manager, so upgrades arrive with the system's.</p>
+
+<h2>Debian, Ubuntu, Raspberry Pi OS</h2>
+<p class="muted">Architectures: amd64 arm64 armel armhf i386 loong64 ppc64el riscv64 s390x</p>
+<pre>sudo curl -fsSLo /usr/share/keyrings/orion-belt.gpg https://pkgs.orion-belt.dev/orion-belt.gpg
+echo "deb [signed-by=/usr/share/keyrings/orion-belt.gpg] https://pkgs.orion-belt.dev stable main" | sudo tee /etc/apt/sources.list.d/orion-belt.list
+sudo apt-get update && sudo apt-get install orion-belt-agent   # or orion-belt, orion-belt-tools</pre>
+
+<h2>Fedora, RHEL, Rocky, Alma, Amazon Linux, openSUSE</h2>
+<pre>sudo curl -fsSLo /etc/yum.repos.d/orion-belt.repo https://pkgs.orion-belt.dev/orion-belt.repo
+sudo dnf install orion-belt-agent        # or yum install
+
+sudo zypper addrepo https://pkgs.orion-belt.dev/orion-belt.repo   # openSUSE / SLES
+sudo zypper install orion-belt-agent</pre>
+
+<h2>Alpine</h2>
+<p class="muted">Architectures: aarch64 armhf armv7 loongarch64 ppc64le riscv64 s390x x86 x86_64</p>
+<pre>sudo wget -O /etc/apk/keys/orion-belt.rsa.pub https://pkgs.orion-belt.dev/apk/orion-belt.rsa.pub
+echo "https://pkgs.orion-belt.dev/apk" | sudo tee -a /etc/apk/repositories
+sudo apk update && sudo apk add orion-belt-agent</pre>
+
+<h2>Arch Linux, Arch Linux ARM</h2>
+<p class="muted">Architectures: aarch64 armv7h i686 x86_64</p>
+<pre>curl -fsSL https://pkgs.orion-belt.dev/orion-belt.asc | sudo pacman-key --add -
+sudo pacman-key --lsign-key F1E47F7B036D5202262E174F613B2217A8958DA9
+printf '[orion-belt]\nServer = https://pkgs.orion-belt.dev/archlinux/$arch\n' | sudo tee -a /etc/pacman.conf
+sudo pacman -Sy orion-belt-agent</pre>
+
+<h2>Services</h2>
+<p>The server and agent packages install their service for systemd, OpenRC, runit or SysV init, but do not start it until it is configured:
+<code>/usr/lib/orion-belt/orion-belt-agent-service setup</code> (or <code>orion-belt-server-service</code>) enables and starts it on any of them.</p>
+
+<h2>Containers</h2>
+<pre>docker pull ghcr.io/orion-belt-dev/orion-belt-server:1.3.1
+docker pull ghcr.io/orion-belt-dev/orion-belt-agent:1.3.1</pre>
+
+<h2>Client downloads</h2>
+<table><tr><td>darwin / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_darwin_amd64.tar.gz">orion-belt_tools_1.3.1_darwin_amd64.tar.gz</a></td></tr>
+<tr><td>darwin / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_darwin_arm64.tar.gz">orion-belt_tools_1.3.1_darwin_arm64.tar.gz</a></td></tr>
+<tr><td>dragonfly / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_dragonfly_amd64.tar.gz">orion-belt_tools_1.3.1_dragonfly_amd64.tar.gz</a></td></tr>
+<tr><td>freebsd / 386</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_freebsd_386.tar.gz">orion-belt_tools_1.3.1_freebsd_386.tar.gz</a></td></tr>
+<tr><td>freebsd / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_freebsd_amd64.tar.gz">orion-belt_tools_1.3.1_freebsd_amd64.tar.gz</a></td></tr>
+<tr><td>freebsd / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_freebsd_arm64.tar.gz">orion-belt_tools_1.3.1_freebsd_arm64.tar.gz</a></td></tr>
+<tr><td>freebsd / armv7</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_freebsd_armv7.tar.gz">orion-belt_tools_1.3.1_freebsd_armv7.tar.gz</a></td></tr>
+<tr><td>freebsd / riscv64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_freebsd_riscv64.tar.gz">orion-belt_tools_1.3.1_freebsd_riscv64.tar.gz</a></td></tr>
+<tr><td>illumos / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_illumos_amd64.tar.gz">orion-belt_tools_1.3.1_illumos_amd64.tar.gz</a></td></tr>
+<tr><td>linux / 386</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_386.tar.gz">orion-belt_tools_1.3.1_linux_386.tar.gz</a></td></tr>
+<tr><td>linux / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_amd64.tar.gz">orion-belt_tools_1.3.1_linux_amd64.tar.gz</a></td></tr>
+<tr><td>linux / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_arm64.tar.gz">orion-belt_tools_1.3.1_linux_arm64.tar.gz</a></td></tr>
+<tr><td>linux / armv5</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_armv5.tar.gz">orion-belt_tools_1.3.1_linux_armv5.tar.gz</a></td></tr>
+<tr><td>linux / armv6</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_armv6.tar.gz">orion-belt_tools_1.3.1_linux_armv6.tar.gz</a></td></tr>
+<tr><td>linux / armv7</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_armv7.tar.gz">orion-belt_tools_1.3.1_linux_armv7.tar.gz</a></td></tr>
+<tr><td>linux / loong64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_loong64.tar.gz">orion-belt_tools_1.3.1_linux_loong64.tar.gz</a></td></tr>
+<tr><td>linux / ppc64le</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_ppc64le.tar.gz">orion-belt_tools_1.3.1_linux_ppc64le.tar.gz</a></td></tr>
+<tr><td>linux / riscv64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_riscv64.tar.gz">orion-belt_tools_1.3.1_linux_riscv64.tar.gz</a></td></tr>
+<tr><td>linux / s390x</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_linux_s390x.tar.gz">orion-belt_tools_1.3.1_linux_s390x.tar.gz</a></td></tr>
+<tr><td>netbsd / 386</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_netbsd_386.tar.gz">orion-belt_tools_1.3.1_netbsd_386.tar.gz</a></td></tr>
+<tr><td>netbsd / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_netbsd_amd64.tar.gz">orion-belt_tools_1.3.1_netbsd_amd64.tar.gz</a></td></tr>
+<tr><td>netbsd / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_netbsd_arm64.tar.gz">orion-belt_tools_1.3.1_netbsd_arm64.tar.gz</a></td></tr>
+<tr><td>openbsd / 386</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_openbsd_386.tar.gz">orion-belt_tools_1.3.1_openbsd_386.tar.gz</a></td></tr>
+<tr><td>openbsd / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_openbsd_amd64.tar.gz">orion-belt_tools_1.3.1_openbsd_amd64.tar.gz</a></td></tr>
+<tr><td>openbsd / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_openbsd_arm64.tar.gz">orion-belt_tools_1.3.1_openbsd_arm64.tar.gz</a></td></tr>
+<tr><td>solaris / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_solaris_amd64.tar.gz">orion-belt_tools_1.3.1_solaris_amd64.tar.gz</a></td></tr>
+<tr><td>windows / 386</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_386.zip">orion-belt_tools_1.3.1_windows_386.zip</a></td></tr>
+<tr><td>windows / amd64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_amd64.zip">orion-belt_tools_1.3.1_windows_amd64.zip</a></td></tr>
+<tr><td>windows / arm64</td><td><a href="https://github.com/orion-belt-dev/orion-belt/releases/download/v1.3.1/orion-belt_tools_1.3.1_windows_arm64.zip">orion-belt_tools_1.3.1_windows_arm64.zip</a></td></tr></table>
+<script>
+// Light/dark switch. The page follows the system until the button is used.
+(function () {
+  var root = document.documentElement, btn = document.getElementById("theme");
+  var sys = window.matchMedia("(prefers-color-scheme: dark)");
+  function dark() { return root.dataset.theme ? root.dataset.theme === "dark" : sys.matches; }
+  function label() { btn.textContent = dark() ? "Light theme" : "Dark theme"; }
+  btn.addEventListener("click", function () {
+    root.dataset.theme = dark() ? "light" : "dark";
+    try { localStorage.setItem("ob-theme", root.dataset.theme); } catch (e) {}
+    label();
+  });
+  sys.addEventListener("change", label);
+  label();
+})();
+</script>
+</body>
+</html>

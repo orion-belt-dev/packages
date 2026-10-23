@@ -1,0 +1,48 @@
+Package: orion-belt
+Version: 1.3.1
+Architecture: i386
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 34443
+Recommends: openssh-client
+Filename: ./orion-belt_1.3.1_i386.deb
+Size: 11321154
+MD5sum: d2b93f05f2a1b9e39ec8c98759cd7e0c
+SHA1: 268a7f8d61ce9ef42d5272cb8f71a931d82d7dbe
+SHA256: 43287a2236f41fce0ccb57fa04d8a56cbc942c1650f8ead8d03d2865acd50fca
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt PAM gateway server (SSH bastion + API).
+ Session recording, just-in-time access and audit for SSH.
+
+Package: orion-belt-agent
+Version: 1.3.1
+Architecture: i386
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 15999
+Filename: ./orion-belt-agent_1.3.1_i386.deb
+Size: 5841192
+MD5sum: 99353d2f84562e2dbc709090c0f27904
+SHA1: ed24126272dd5006164cb071313454b1b21cba97
+SHA256: e9369364bf52823d824adee533cd911736076cd9d271f9e1fd4c986cc71cfbc1
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt reverse-SSH agent.
+ Connects this host to an Orion Belt gateway without opening inbound ports.
+
+Package: orion-belt-tools
+Version: 1.3.1
+Architecture: i386
+Maintainer: Orion Belt Maintainers <maintainers@orion-belt.dev>
+Installed-Size: 25532
+Filename: ./orion-belt-tools_1.3.1_i386.deb
+Size: 9331706
+MD5sum: 1b72f91a4c2c8f2c258c8f07a209d16f
+SHA1: a16aa62391a3386bb1d80d9826ce890862e95954
+SHA256: 402187e3c1d636df388a3b913eb08625bd029ee4e916865429e0cfc82e94b4ba
+Section: net
+Priority: optional
+Homepage: https://orion-belt.dev
+Description: Orion Belt clients: osh (SSH), ocp (file copy) and oadmin (administration).
+

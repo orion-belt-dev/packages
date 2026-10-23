@@ -1,0 +1,7 @@
+[orion-belt]
+name=Orion Belt
+baseurl=https://pkgs.orion-belt.dev
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://pkgs.orion-belt.dev/orion-belt.asc
